@@ -1,0 +1,35 @@
+<!-- Guard against missing customer (defensive programming) -->
+<div *ngIf="customer">
+
+    <!--Diagnostic: {{ customer | json }}-->
+  
+    
+  <h2>
+    <button (click)="left()"><</button>
+    {{customer.name}}
+    <button (click)="right()">></button>
+  </h2>
+
+    <!--  <p><i>
+      {{customer.name}} is at {{customer.address.street}} in {{customer.address.city}}
+      in {{customer.address.state}} in the {{customer.address.region}} region.
+    </i></p> -->
+  
+    <fieldset>
+      <label>
+        Name:
+        <input [(ngModel)]="customer.name" placeholder="Customer name">
+      </label>
+    </fieldset>
+  
+    <br>
+    <label><input type="checkbox" [(ngModel)]="showAddress"/>Show address</label>
+  
+    <div *ngIf="showAddress">
+        <address-comp [address]="customer.address"
+        [states]="states" [regions]="regions"></address-comp>
+    
+    </div>
+  
+  </div>
+  

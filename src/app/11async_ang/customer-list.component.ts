@@ -5,21 +5,21 @@ import { DataService } from './data.service';
 import { LoggerService } from './logger.service';
 
 @Component({
-
+ 
   selector: 'customer-list',
   templateUrl: 'customer-list.component.html',
   styleUrls: ['customer-list.component.css']
 })
 
-export class CustomerListComponent {
+export class CustomerListComponent  {
 
   customer: Customer;
 
-  customers: Customer[];
+  customers: Customer[]; 
   isBusy = false;
-  errorMessage = '';
+
   // inject the DataService
-  constructor(private dataService: DataService, private logger: LoggerService) { }
+  constructor(private dataService: DataService,private logger:LoggerService) { }
 
   ngOnInit() { this.getCustomers(); }
 
@@ -28,26 +28,17 @@ export class CustomerListComponent {
     this.logger.log('Getting customers ...');
 
     //this.dataService.getCustomersP().then(  // promise version
-    /* this.dataService.getCustomers().subscribe( // observable version
+    this.dataService.getCustomers().subscribe( // observable version
       custs => {
         this.isBusy = false;
         this.customers = custs;
       });
- */
-    this.dataService.getCustomers().subscribe({
-      next: custs => {
-        this.customers = custs;
-        this.isBusy = false;
-      },
-      error: err => this.errorMessage = err
-      });
+  }
 
-}
-
-shift(increment: number)
-{
-  let ix = increment + this.customers.findIndex(c => c === this.customer);
-  ix = Math.min(this.customers.length - 1, Math.max(0, ix));
-  this.customer = this.customers[ix];
-}
+  shift(increment:number)
+  {
+    let ix = increment + this.customers.findIndex(c => c === this.customer);
+    ix = Math.min(this.customers.length - 1, Math.max(0, ix));
+    this.customer = this.customers[ix];
+  }
 }

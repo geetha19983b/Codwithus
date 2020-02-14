@@ -9,9 +9,6 @@ import { CustomerDetailComponent } from './customer-detail.component';
 import { AddressComponent } from './address.component';
 import { DataService } from './data.service';
 import { LoggerService } from './logger.service';
-import { HttpClientModule } from '@angular/common/http';
-import { InMemoryDataService } from './in-memory-data.service';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 @NgModule({
   declarations: [
@@ -23,9 +20,7 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule,
-    AppRoutingModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    AppRoutingModule
   
   ],
   providers: [ DataService,LoggerService ], // What services do I provide?
