@@ -2,8 +2,9 @@ h1 {
     color: purple;
     font-size: 150%;
   }
-.selected
-{
-    color:purple;
+  
+  .selected {
+    color: purple;
     font-weight: bold;
-}  
+  }
+  
